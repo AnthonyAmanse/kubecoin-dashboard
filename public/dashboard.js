@@ -8,7 +8,7 @@
 } */
 google.charts.load('current', {'packages':['corechart']});
 
-let URL = "https://anthony-blockchain.us-south.containers.mybluemix.net"
+let URL = "https://cloudcoin.us-south.containers.appdomain.cloud"
 
 // var blockData = [];
 var map = new Map();

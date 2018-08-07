@@ -1,12 +1,25 @@
 /*eslint no-undef:0*/
 
-let BLOCKCHAIN_URL = "https://anthony-blockchain.us-south.containers.mybluemix.net";
-let BLOCKCHAIN_SOCKET = "http://169.61.17.173:3030"
+let BLOCKCHAIN_URL = "https://cloudcoin.us-south.containers.appdomain.cloud";
+let BLOCKCHAIN_SOCKET = BLOCKCHAIN_URL.split('//')[1]
+
+function getParameterByName(name) {
+  let url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+var eventName = getParameterByName('event');
+console.log(eventName);
 
 class Events {
   constructor() {
     var self = this;
-    self.block = io.connect(BLOCKCHAIN_SOCKET + '/block');
+    self.block = io.connect("https://" + eventName + "." + BLOCKCHAIN_SOCKET + '/block');
     self.block.on('block', (data) => {
       self.update(JSON.parse(data));
     });
@@ -18,7 +31,7 @@ class Events {
   requestBlocks() {
     var query = {
       type: "blocks",
-      queue: "seller_queue",
+      queue: "seller_queue" + "-" + eventName,
       params: {
         "noOfLastBlocks": "20"
       }
@@ -130,7 +143,7 @@ class Events {
             '<div class="hash wordwrap">' + transaction.tx_id + '</div>' +
           '</div>' +
         '</div>'
-        
+
         anchor.append(block);
       });
     });
