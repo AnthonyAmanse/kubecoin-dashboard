@@ -3,17 +3,12 @@
 let BLOCKCHAIN_URL = "https://cloudcoin.us-south.containers.appdomain.cloud";
 let BLOCKCHAIN_SOCKET = BLOCKCHAIN_URL.split('//')[1]
 
-function getParameterByName(name) {
-  let url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+function getEventName() {
+  let url = window.location.pathname.split('/');
+  return url[2];
 }
 
-var eventName = getParameterByName('event');
+var eventName = getEventName();
 console.log(eventName);
 
 class Events {

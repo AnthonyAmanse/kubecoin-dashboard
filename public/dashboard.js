@@ -10,8 +10,15 @@ google.charts.load('current', {'packages':['corechart']});
 
 let URL = "https://cloudcoin.us-south.containers.appdomain.cloud"
 
-// var blockData = [];
+function getEventName() {
+  let url = window.location.pathname.split('/');
+  return url[2];
+}
+
+var eventName = getEventName();
 var map = new Map();
+
+// var blockData = [];
 
 // var exampleBlock = {
 //   blockid: 1545,
@@ -97,7 +104,7 @@ function getStandingData() {
       addStandings(data);
     }
   };
-  xmlhttp.open("GET", URL + "/leaderboard/top/100", true);
+  xmlhttp.open("GET", URL + "/leaderboard/" + eventName + "/top/100", true);
   xmlhttp.send();
 }
 
@@ -110,7 +117,7 @@ function getTotalUsers() {
       document.getElementById('numberOfParticipants').innerHTML = data.count;
     }
   };
-  xmlhttp.open("GET", URL + "/registerees/totalUsers", true);
+  xmlhttp.open("GET", URL + "/registerees/" + eventName + "/totalUsers", true);
   xmlhttp.send();
 }
 
@@ -124,7 +131,7 @@ function getTotalSteps() {
       document.getElementById('distanceWalked').innerHTML = Math.floor((data[0].count * 0.762)/1000);
     }
   };
-  xmlhttp.open("GET", URL + "/registerees/totalSteps", true);
+  xmlhttp.open("GET", URL + "/registerees/" + eventName + "/totalSteps", true);
   xmlhttp.send();
 }
 
@@ -141,7 +148,7 @@ function getTotalDevices() {
       google.charts.setOnLoadCallback(drawChart(android, ios));
     }
   };
-  xmlhttp.open("GET", URL + "/registerees/deviceTotals", true);
+  xmlhttp.open("GET", URL + "/registerees/" + eventName + "/deviceTotals", true);
   xmlhttp.send();
 }
 
