@@ -3,6 +3,6 @@ applications:
   memory: 256M
   instances: 1
   domain: mybluemix.net
-  name: kubecoin
-  host: kubecoin
+  name: project-sweden
+  host: project-sweden
   disk_quota: 1024M

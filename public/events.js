@@ -1,7 +1,7 @@
 /*eslint no-undef:0*/
 
 let BLOCKCHAIN_URL = "https://anthony-blockchain.us-south.containers.mybluemix.net";
-let BLOCKCHAIN_SOCKET = "http://169.61.17.173:3030"
+let BLOCKCHAIN_SOCKET = "http://169.61.17.170:3030"
 
 class Events {
   constructor() {
@@ -130,7 +130,7 @@ class Events {
             '<div class="hash wordwrap">' + transaction.tx_id + '</div>' +
           '</div>' +
         '</div>'
-        
+
         anchor.append(block);
       });
     });
