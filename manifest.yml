@@ -2,7 +2,7 @@ applications:
 - path: .
   memory: 256M
   instances: 1
-  domain: mybluemix.net
-  name: kubecoin
-  host: kubecoin
-  disk_quota: 1024M
+  # domain: mybluemix.net
+  name: staging-coin
+  # routes:
+  # - route: staging-coin.mybluemix.net
